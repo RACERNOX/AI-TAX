@@ -169,7 +169,7 @@ export GEMINI_API_KEY=your_production_api_key
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
 
 ## 🆘 Support
 
@@ -186,6 +186,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**TaxAgent Pro** - Transforming tax document processing with professional AI solutions.
-
-*Built with ❤️ for tax professionals and individuals seeking automated tax preparation.* 
