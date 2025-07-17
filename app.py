@@ -136,8 +136,8 @@ app = Flask(__name__)
 app.config.update(
     SECRET_KEY=os.environ.get('SECRET_KEY', secrets.token_hex(16)),
     MAX_CONTENT_LENGTH=16 * 1024 * 1024,  # 16MB max file size
-    UPLOAD_FOLDER='/tmp',  # Vercel's writable directory
-    OUTPUT_FOLDER='/tmp',  # Vercel's writable directory
+    UPLOAD_FOLDER='/tmp/uploads',  # Use temp directory for cloud
+    OUTPUT_FOLDER='/tmp/generated',  # Use temp directory for cloud
     SESSION_COOKIE_SECURE=True,
     SESSION_COOKIE_HTTPONLY=True,
     SESSION_COOKIE_SAMESITE='Lax'
@@ -174,13 +174,20 @@ except Exception as e:
     logger.error(f"❌ Initialization failed: {e}")
     raise
 
-# Vercel-compatible directory handling
-try:
-    os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
-    os.makedirs(app.config['OUTPUT_FOLDER'], exist_ok=True)
-except Exception as e:
-    logger.warning(f"⚠️ Directory setup warning: {e}")
-    # Continue without raising error in serverless environment
+# Ensure directories exist with proper permissions (cloud-compatible)
+for directory in [app.config['UPLOAD_FOLDER'], app.config['OUTPUT_FOLDER']]:
+    try:
+        os.makedirs(directory, exist_ok=True)
+        # Test write permissions in cloud environment
+        test_file = os.path.join(directory, 'test_write.tmp')
+        with open(test_file, 'w') as f:
+            f.write('test')
+        os.remove(test_file)
+        logger.info(f"✅ Directory ready: {directory}")
+    except Exception as e:
+        logger.warning(f"⚠️ Directory setup warning for {directory}: {e}")
+        # Continue without raising error in cloud environment
+        pass
 
 # Professional file validation
 ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg'}
