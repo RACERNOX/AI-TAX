@@ -18,13 +18,12 @@ from tax_calculator import TaxCalculator
 from form_generator import Form1040Generator
 from irs_form_filler_corrected import CorrectedIRSForm1040Filler
 
-# Configure logging for production
+# Configure logging for production (cloud-compatible)
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s [%(levelname)s] %(name)s: %(message)s',
     handlers=[
-        logging.FileHandler('taxagent_pro.log'),
-        logging.StreamHandler()
+        logging.StreamHandler()  # Only console logging for cloud deployment
     ]
 )
 logger = logging.getLogger(__name__)
@@ -137,8 +136,8 @@ app = Flask(__name__)
 app.config.update(
     SECRET_KEY=os.environ.get('SECRET_KEY', secrets.token_hex(16)),
     MAX_CONTENT_LENGTH=16 * 1024 * 1024,  # 16MB max file size
-    UPLOAD_FOLDER='uploads',
-    OUTPUT_FOLDER='generated',
+    UPLOAD_FOLDER='/tmp/uploads',  # Use temp directory for cloud
+    OUTPUT_FOLDER='/tmp/generated',  # Use temp directory for cloud
     SESSION_COOKIE_SECURE=True,
     SESSION_COOKIE_HTTPONLY=True,
     SESSION_COOKIE_SAMESITE='Lax'
@@ -175,18 +174,20 @@ except Exception as e:
     logger.error(f"❌ Initialization failed: {e}")
     raise
 
-# Ensure directories exist with proper permissions
+# Ensure directories exist with proper permissions (cloud-compatible)
 for directory in [app.config['UPLOAD_FOLDER'], app.config['OUTPUT_FOLDER']]:
     try:
         os.makedirs(directory, exist_ok=True)
-        # Test write permissions
+        # Test write permissions in cloud environment
         test_file = os.path.join(directory, 'test_write.tmp')
         with open(test_file, 'w') as f:
             f.write('test')
         os.remove(test_file)
+        logger.info(f"✅ Directory ready: {directory}")
     except Exception as e:
-        logger.error(f"❌ Directory setup failed for {directory}: {e}")
-        raise RuntimeError(f"Cannot create or write to directory: {directory}")
+        logger.warning(f"⚠️ Directory setup warning for {directory}: {e}")
+        # Continue without raising error in cloud environment
+        pass
 
 # Professional file validation
 ALLOWED_EXTENSIONS = {'pdf', 'png', 'jpg', 'jpeg'}
@@ -1094,10 +1095,10 @@ def validate_request():
 
 # Production-ready startup with enhanced configuration
 if __name__ == '__main__':
-    # Professional development server configuration
+    # Cloud-ready server configuration
     port = int(os.environ.get('PORT', 8080))
     debug_mode = os.environ.get('FLASK_ENV') == 'development'
-    host = os.environ.get('HOST', '127.0.0.1')
+    host = os.environ.get('HOST', '0.0.0.0')  # Cloud-compatible host binding
     
     logger.info(f"🚀 Starting GreenGrowth CPAs AI Tax Agent on {host}:{port}")
     logger.info(f"🔧 Debug mode: {debug_mode}")

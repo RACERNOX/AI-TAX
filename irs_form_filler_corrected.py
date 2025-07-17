@@ -34,7 +34,7 @@ class CorrectedIRSForm1040Filler:
     
     def __init__(self, template_path="f1040.pdf"):
         self.template_path = template_path
-        self.output_dir = 'generated'
+        self.output_dir = '/tmp/generated'  # Use temp directory for cloud deployment
         os.makedirs(self.output_dir, exist_ok=True)
         
         # CORRECTED field mapping based on verification tests

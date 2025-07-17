@@ -4,10 +4,10 @@ import os
 from datetime import datetime
 
 class Form1040Generator:
-    """Simple Form 1040 PDF generator"""
+    """Simple Form 1040 PDF generator (cloud-compatible)"""
     
     def __init__(self):
-        self.output_dir = 'generated'
+        self.output_dir = '/tmp/generated'  # Use temp directory for cloud deployment
         os.makedirs(self.output_dir, exist_ok=True)
     
     def generate_form_1040(self, tax_data, calculations):
