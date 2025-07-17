@@ -1097,10 +1097,10 @@ def validate_request():
 if __name__ == '__main__':
     # Cloud-ready server configuration with error handling
     try:
-        port = int(os.environ.get('PORT', 8080))
+        port = int(os.environ.get('PORT', 10000))
     except (ValueError, TypeError):
         # Fallback if PORT is not a valid integer (common in some cloud environments)
-        port = 8080
+        port = 10000
         logger.warning(f"⚠️ Invalid PORT environment variable, using default: {port}")
     
     debug_mode = os.environ.get('FLASK_ENV') == 'development'
