@@ -3,7 +3,7 @@ setuptools>=65.5.1
 Flask==3.0.0
 Werkzeug==3.0.1
 google-generativeai==0.3.2
-PyMuPDF==1.23.14
+PyMuPDF==1.22.5  # Using a slightly older, more stable version with pre-built wheels
 reportlab==4.0.7
 pypdf==3.17.4
 Pillow==10.1.0

@@ -3,7 +3,22 @@ services:
     name: taxagent-pro
     env: python
     buildCommand: |
-      apt-get update && apt-get install -y build-essential python3-dev
+      apt-get update && apt-get install -y \
+        build-essential \
+        python3-dev \
+        libmupdf-dev \
+        libfreetype6-dev \
+        libharfbuzz-dev \
+        libfribidi-dev \
+        libjpeg-dev \
+        libopenjp2-7-dev \
+        libpng-dev \
+        libtiff-dev \
+        libxcb1-dev \
+        libzstd-dev \
+        gcc \
+        g++
+      pip install --upgrade pip setuptools wheel
       pip install -r requirements.txt
     startCommand: python app.py
     envVars:
