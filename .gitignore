@@ -1,0 +1,89 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment Variables (SECURITY)
+.env
+.env.local
+.env.production
+.env.staging
+
+# Application Specific (SECURITY)
+generated/              # Generated PDF files
+uploads/                # Uploaded tax documents
+*.log                   # Log files containing sensitive data
+taxagent_pro.log       # Application logs
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Flask
+instance/
+.webassets-cache
+
+# Testing
+.tox/
+.nox/
+.coverage
+.pytest_cache/
+htmlcov/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# Security (API Keys and sensitive data)
+*.key
+*.pem
+*.crt
+config.py
+secrets.json
+
+# Temporary files
+*.tmp
+*.temp
+.cache/ 

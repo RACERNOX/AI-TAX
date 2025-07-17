@@ -1,0 +1,51 @@
+FORM 1099-INT - INTEREST INCOME 2024
+
+PAYER'S name, street address, city or town, state or province, country, ZIP or foreign postal code, and telephone no.
+
+FIRST NATIONAL BANK
+500 MAIN STREET  
+NEW YORK, NY 10001
+Phone: (555) 123-4567
+
+PAYER'S federal identification number    RECIPIENT'S identification number
+12-3456789                              987-65-4321
+
+RECIPIENT'S name
+SARAH M DAVIS
+
+Street address (including apt. no.)
+789 PINE AVENUE
+NEW YORK, NY 10002
+
+City or town, state or province, country, and ZIP or foreign postal code
+
+
+Account number (see instructions)
+SAV-12345678
+
+1. Interest income                       2. Early withdrawal penalty
+   $3,250.00                               $0.00
+
+3. Interest on U.S. Savings Bonds        4. Federal income tax withheld  
+   and Treas. obligations                    $325.00
+   $0.00
+
+5. Investment expenses                   6. Foreign tax paid
+   $0.00                                    $0.00
+
+7. Foreign country or U.S. possession    8. Tax-exempt interest
+                                           $0.00
+
+9. Specified private activity bond       10. Market discount
+   interest                                 $0.00
+   $0.00
+
+11. Bond premium                        12. Bond premium on Treasury obligations
+    $0.00                                  $0.00
+
+13. Bond premium on tax-exempt bond     14. Tax-exempt and tax credit bond CUSIP no.
+    $0.00
+
+Form 1099-INT Interest Income 2024
+Department of the Treasury - Internal Revenue Service
+Copy B For Recipient 
